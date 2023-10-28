@@ -67,6 +67,28 @@ async function deploySCNoUp(contractName, args = []) {
   return smartContract;
 }
 
+async function verifyNoUp(contract) {
+
+  if (
+    !!process.env.HARDHAT_NETWORK &&
+    process.env.HARDHAT_NETWORK != "localhost"
+  ) {
+    var res = await contract.waitForDeployment();
+    await res.deploymentTransaction().wait(10);
+  }
+  
+  if (
+    !!process.env.HARDHAT_NETWORK &&
+    process.env.HARDHAT_NETWORK != "localhost"
+  ) {
+
+    await hre.run("verify:verify", {
+      address: await contract.getAddress(),
+      constructorArguments: [],
+    });
+  }
+  }
+
 module.exports = {
   ex,
   verify,
@@ -75,4 +97,5 @@ module.exports = {
   deploySC,
   deploySCNoUp,
   pEth,
+  verifyNoUp,
 };

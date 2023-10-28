@@ -13,8 +13,24 @@ function hashToken(tokenId, account) {
   );
 }
 
-function getRootFromMT() {
-  return "";
+function generateMerkleProof(tokenId, account) {
+  var elementHash = hashToken(tokenId, account); 
+  var proofs = merkleTree.getHexProof(elementHash);
+  return proofs;
 }
 
-module.exports = { getRootFromMT };
+function getRootFromMT() {
+    var elementosHasheados = walletAndIds.map(({ id, address }) => {
+      return hashToken(id, address);
+    });
+    merkleTree = new MerkleTree(elementosHasheados, keccak256, {
+      sortPairs: true,
+    });
+
+    root = merkleTree.getHexRoot();
+
+    console.log(root);
+    return root;
+}
+
+module.exports = { getRootFromMT, generateMerkleProof };
