@@ -20,7 +20,7 @@ exports.handler = async function (data) {
   var {account, id} = event[0].params;
 
   //Address del token BBites
-  var BBitesTokenAdd = "0x830EDAc0c2c4d82891eeb40BBF6430ED5C6bB15B";
+  var BBitesTokenAdd = "0xb5cc38d15a921b7623ba89063AabcB805734A634";
   var tokenAbi = ["function mint(address to, uint256 amount)"];
   var tokenContract = new ethers.Contract(BBitesTokenAdd, tokenAbi, signer);
   var mintTokentx = await tokenContract.mint(account, 10000 * 10 ** 18);

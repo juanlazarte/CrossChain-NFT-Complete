@@ -26,7 +26,7 @@ contract BBitesToken is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeabl
         __AccessControl_init();
         __ERC20Permit_init("BBites Token");
         __UUPSUpgradeable_init();
-        _mint(msg.sender, 1000000 * 10 ** decimals());
+        _mint(msg.sender, 2000000 * 10 ** decimals());
 
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(PAUSER_ROLE, msg.sender);

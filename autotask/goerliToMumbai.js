@@ -18,7 +18,7 @@ exports.handler = async function (data) {
   var { account, id} = event[0].params;
 
   //Ejecutar mint en Mumbai del contrato CuyColletionNft
-  var CuyCollectionNftAdd = "0x9F25d4Cfc7754Aa4559Fba18ED11F90157c517B4";
+  var CuyCollectionNftAdd = "0x6981051e8A70696CFEb110dA45cB3ba61797CC81";
   var tokenAbi = ["function safeMint(address to, uint256 tokenId)"];
   var tokenContract = new ethers.Contract(CuyCollectionNftAdd, tokenAbi, signer);
   var mintTx = await tokenContract.safeMint(account, id);
